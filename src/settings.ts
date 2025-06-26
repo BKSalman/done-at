@@ -68,23 +68,5 @@ export class DoneAtSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					})
 			);
-
-		containerEl.createEl("h3", { text: "Examples" });
-
-		const exampleContainer = containerEl.createEl("div");
-		exampleContainer.createEl("p", { text: "With date enabled:" });
-		exampleContainer.createEl("code", {
-			text: "- [x] Brush teeth #task ✅ 2024-06-26 08:15",
-		});
-
-		exampleContainer.createEl("p", { text: "Without date:" });
-		exampleContainer.createEl("code", {
-			text: "- [x] Exercise #task ✅ 18:30",
-		});
-
-		exampleContainer.createEl("p", {
-			text:
-				"The timestamp is automatically added when you check off a task that contains your configured tag.",
-		});
 	}
 }
