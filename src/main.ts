@@ -32,12 +32,9 @@ export default class DoneAtPlugin extends Plugin {
 				}
 			}),
 		);
-
-		console.log("Done at plugin loaded");
 	}
 
 	onunload() {
-		console.log("Done at plugin unloaded");
 	}
 
 	async loadSettings() {
