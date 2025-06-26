@@ -1,10 +1,10 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
-import TaskTimeTrackerPlugin from "./main.ts";
+import DoneAtPlugin from "./main.ts";
 
-export class TaskTimeTrackerSettingTab extends PluginSettingTab {
-	plugin: TaskTimeTrackerPlugin;
+export class DoneAtSettingTab extends PluginSettingTab {
+	plugin: DoneAtPlugin;
 
-	constructor(app: App, plugin: TaskTimeTrackerPlugin) {
+	constructor(app: App, plugin: DoneAtPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -14,7 +14,7 @@ export class TaskTimeTrackerSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl("h2", { text: "Task Time Tracker Settings" });
+		containerEl.createEl("h2", { text: "Done at Settings" });
 
 		new Setting(containerEl)
 			.setName("Task tag")

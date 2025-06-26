@@ -1,28 +1,28 @@
 import { MarkdownView, Plugin, TFile } from "obsidian";
-import { TaskTimeTrackerSettingTab } from "./settings.ts";
+import { DoneAtSettingTab } from "./settings.ts";
 
-interface TaskTimeTrackerSettings {
+interface DoneAtSettings {
 	timeFormat: string;
 	dateFormat: string;
 	includeDate: boolean;
 	taskTag: string;
 }
 
-const DEFAULT_SETTINGS: TaskTimeTrackerSettings = {
+const DEFAULT_SETTINGS: DoneAtSettings = {
 	timeFormat: "HH:mm",
 	dateFormat: "YYYY-MM-DD",
 	includeDate: true,
 	taskTag: "#task",
 };
 
-export default class TaskTimeTrackerPlugin extends Plugin {
-	settings: TaskTimeTrackerSettings;
+export default class DoneAtPlugin extends Plugin {
+	settings: DoneAtSettings;
 
 	async onload() {
 		await this.loadSettings();
 
 		// Add settings tab
-		this.addSettingTab(new TaskTimeTrackerSettingTab(this.app, this));
+		this.addSettingTab(new DoneAtSettingTab(this.app, this));
 
 		// Register the event handler for editor changes
 		this.registerEvent(
@@ -33,11 +33,11 @@ export default class TaskTimeTrackerPlugin extends Plugin {
 			}),
 		);
 
-		console.log("Task Time Tracker plugin loaded");
+		console.log("Done at plugin loaded");
 	}
 
 	onunload() {
-		console.log("Task Time Tracker plugin unloaded");
+		console.log("Done at plugin unloaded");
 	}
 
 	async loadSettings() {
