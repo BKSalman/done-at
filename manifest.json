@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "done-at",
+	"name": "Done at",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Insert the time at which the checkbox was marked",
+	"author": "Salman Abuhaimed",
+	"authorUrl": "https://github.com/BKSalman/",
+	"fundingUrl": "",
 	"isDesktopOnly": false
 }

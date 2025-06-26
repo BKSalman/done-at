@@ -1,0 +1,90 @@
+import { App, PluginSettingTab, Setting } from "obsidian";
+import TaskTimeTrackerPlugin from "./main.ts";
+
+export class TaskTimeTrackerSettingTab extends PluginSettingTab {
+	plugin: TaskTimeTrackerPlugin;
+
+	constructor(app: App, plugin: TaskTimeTrackerPlugin) {
+		super(app, plugin);
+		this.plugin = plugin;
+	}
+
+	display(): void {
+		const { containerEl } = this;
+
+		containerEl.empty();
+
+		containerEl.createEl("h2", { text: "Task Time Tracker Settings" });
+
+		new Setting(containerEl)
+			.setName("Task tag")
+			.setDesc("The tag that identifies tasks to track (e.g., #task)")
+			.addText((text) =>
+				text
+					.setPlaceholder("#task")
+					.setValue(this.plugin.settings.taskTag)
+					.onChange(async (value) => {
+						this.plugin.settings.taskTag = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
+			.setName("Include date")
+			.setDesc("Include the date along with the time in timestamps")
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.plugin.settings.includeDate)
+					.onChange(async (value) => {
+						this.plugin.settings.includeDate = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
+			.setName("Time format")
+			.setDesc(
+				"Format for the time (HH:mm for 24-hour, hh:mm A for 12-hour)",
+			)
+			.addText((text) =>
+				text
+					.setPlaceholder("HH:mm")
+					.setValue(this.plugin.settings.timeFormat)
+					.onChange(async (value) => {
+						this.plugin.settings.timeFormat = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
+			.setName("Date format")
+			.setDesc("Format for the date (YYYY-MM-DD, MM/DD/YYYY, etc.)")
+			.addText((text) =>
+				text
+					.setPlaceholder("YYYY-MM-DD")
+					.setValue(this.plugin.settings.dateFormat)
+					.onChange(async (value) => {
+						this.plugin.settings.dateFormat = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		containerEl.createEl("h3", { text: "Examples" });
+
+		const exampleContainer = containerEl.createEl("div");
+		exampleContainer.createEl("p", { text: "With date enabled:" });
+		exampleContainer.createEl("code", {
+			text: "- [x] Brush teeth #task ✅ 2024-06-26 08:15",
+		});
+
+		exampleContainer.createEl("p", { text: "Without date:" });
+		exampleContainer.createEl("code", {
+			text: "- [x] Exercise #task ✅ 18:30",
+		});
+
+		exampleContainer.createEl("p", {
+			text:
+				"The timestamp is automatically added when you check off a task that contains your configured tag.",
+		});
+	}
+}
